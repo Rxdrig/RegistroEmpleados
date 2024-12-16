@@ -50,6 +50,7 @@ public partial class CrearEmpleado : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Error", ex.Message, "OK");
+            await Navigation.PopAsync();
         }
     }
 }

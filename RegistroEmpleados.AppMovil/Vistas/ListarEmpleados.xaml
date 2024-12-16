@@ -57,13 +57,21 @@
                                    Text="{Binding Cargo.Nombre}"/>
                             <ImageButton x:Name="EditarButton"
                                          Grid.Column="2"
-                                         Grid.RowSpan="1"
                                          Source="edit_icon.png"
                                          BackgroundColor="Transparent"
                                          HeightRequest="25"
                                          WidthRequest="25"
                                          CommandParameter="{Binding .}"
-                                         Clicked="NuevoEmpleadoBoton_Clicked"/>
+                                         Clicked="EditarButton_Clicked"/>
+                            <ImageButton x:Name="DeshabilitarButton"
+                                         Grid.Column="3"
+                                         Grid.RowSpan="1"
+                                         Source="disable_icon.png"
+                                         BackgroundColor="Transparent"
+                                         HeightRequest="25"
+                                         WidthRequest="25"
+                                         CommandParameter="{Binding .}"
+                                         Clicked="DeshabilitarButton_Clicked"/>
                         </Grid>
                     </DataTemplate>
             </CollectionView.ItemTemplate>

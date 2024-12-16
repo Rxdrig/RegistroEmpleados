@@ -25,12 +25,11 @@ namespace RegistroEmpleados.AppMovil
             ActualizarEmpleados();
             return builder.Build();
 
-
         }
 
         public static async Task ActualizarCargos()
         {
-            FirebaseClient client = new FirebaseClient("https://registroempleados-d7b5e-default-rtdb.firebaseio.com/");
+            FirebaseClient client = new FirebaseClient("https://registroempleados-4902d-default-rtdb.firebaseio.com/");
 
             var cargos = await client.Child("Cargos").OnceAsync<Cargo>();
 
@@ -54,11 +53,9 @@ namespace RegistroEmpleados.AppMovil
                 }
             }
         }
-
-
         public static async Task ActualizarEmpleados()
         {
-            FirebaseClient client = new FirebaseClient("https://registroempleados-d7b5e-default-rtdb.firebaseio.com/");
+            FirebaseClient client = new FirebaseClient("https://registroempleados-4902d-default-rtdb.firebaseio.com/");
 
             var empleados = await client.Child("Empleados").OnceAsync<Empleado>();
 
@@ -69,7 +66,7 @@ namespace RegistroEmpleados.AppMovil
                     var empleadoActualizado = empleado.Object;
                     empleadoActualizado.Estado = true;
 
-                    await client.Child("Cargos").Child(empleado.Key).PutAsync(empleadoActualizado);
+                    await client.Child("Empleados").Child(empleado.Key).PutAsync(empleadoActualizado);
                 }
             }
         }
