@@ -26,6 +26,9 @@
         <Label Text="Sueldo"/>
         <Entry x:Name="EditSueldoEntry" Keyboard="Numeric"/>
 
+        <Label Text="Estado:"/>
+        <Switch x:Name="editEstadoSwitch" IsToggled="True"/>
+
         <Button Text="Actualizar"
                 x:Name="ActualizarButton"
                 TextColor="White"

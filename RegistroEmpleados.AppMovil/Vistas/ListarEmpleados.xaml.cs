@@ -1,4 +1,5 @@
 using Firebase.Database;
+using Firebase.Database.Query;
 using RegistroEmpleados.Modelos.Modelos;
 using System.Collections.ObjectModel;
 
@@ -86,9 +87,34 @@ public partial class ListarEmpleados : ContentPage
         }
     }
 
-    private void DeshabilitarButton_Clicked(object sender, EventArgs e)
+    private async void DeshabilitarButton_Clicked(object sender, EventArgs e)
     {
+        var boton = sender as ImageButton;
+        var empleado = boton?.CommandParameter as Empleado;
 
+        if (empleado is null) 
+        {
+            await DisplayAlert("Error", "No se pudo obtener la informacion del empleado", "Ok");
+            return;
+
+        }
+
+        bool confirmacion = await DisplayAlert("Confirmación", $"Está seguro de deshabilitar al empleado {empleado.NombreCompleto}?", "Si","No");
+
+        if (confirmacion) 
+        {
+            try 
+            {
+                empleado.Estado = false;
+                await client.Child("Empleados").Child(empleado.Id).PutAsync(empleado);
+                await DisplayAlert("Éxito", $"El empleado {empleado.NombreCompleto} ha sido deshabilitado con éxito!", "Ok");
+                CargarLista();
+            }
+            catch (Exception) 
+            {
+                throw;
+            }
+        }
     }
 
 
