@@ -19,7 +19,7 @@ public partial class ListarEmpleados : ContentPage
 
     private async void CargarLista()
     {
-
+        Lista.Clear();
         var empleados = await client.Child("Empleados").OnceAsync<Empleado>();
         var empleadosActivos = empleados.Where(e => e.Object.Estado == true).ToList();
 
@@ -89,8 +89,11 @@ public partial class ListarEmpleados : ContentPage
 
     private async void DeshabilitarButton_Clicked(object sender, EventArgs e)
     {
+        
         var boton = sender as ImageButton;
         var empleado = boton?.CommandParameter as Empleado;
+
+ 
 
         if (empleado is null) 
         {
